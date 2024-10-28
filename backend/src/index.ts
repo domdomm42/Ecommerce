@@ -6,6 +6,7 @@ import helmet from "helmet";
 import Product from "./models/Product";
 import User from "./models/User";
 import Cart from "./models/Cart";
+import signupRoute from "./routes/cartRoutes";
 
 // import issuesRoute from "./routes/issuesRoute.js";
 
@@ -21,7 +22,7 @@ app.get("/", (req, res) => {
   res.send("Home page");
 });
 
-// app.use("/issues", issuesRoute);
+app.use("/signup", signupRoute);
 
 mongoose
   .connect(process.env.MONGODB_URI ?? "")
