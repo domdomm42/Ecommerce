@@ -1,32 +1,35 @@
-// import express from "express";
-// import Cart from "../models/Cart";
-// import User from "../models/User";
-// import Product from "../models/Product";
+import { Router, Request, Response } from "express";
+import ProductRepository from "../repositories/ProductRepository";
 
-// const router = express.Router();
+const router = Router();
+const productRepo = new ProductRepository();
 
-// // Add item to cart
-// router.post("/add", async (req, res) => {
-//   try {
-//     const { userId, productId, quantity } = req.body;
+router.post("/", async (req: Request, res: Response) => {
+  try {
+    const productData = req.body;
+    const newProduct = await productRepo.create(productData);
+    res.status(201).json(newProduct);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create product" });
+  }
+});
 
-//     // Get or create user
-//     const user = new User(userId, "example@email.com", "password");
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const product = await productRepo.findById(req.params.id);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch product" });
+  }
+});
 
-//     // Get or create cart
-//     const cart = new Cart(user);
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const products = await productRepo.findAll();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch products" });
+  }
+});
 
-//     // Get product
-//     const product = new Product("Laptop", 999);
-
-//     // Add to cart
-//     cart.addToCart(product);
-//     cart.printCart(); // Using your existing method
-
-//     res.json({ message: "Product added to cart", cart });
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// });
-
-// export default router;
+export default router;

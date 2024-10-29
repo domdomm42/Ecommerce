@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import helmet from "helmet";
+import productRoutes from "./routes/productRoutes";
 // import Product from "./models/Product";
 // import User from "./models/User";
 // import Cart from "./models/Cart";
@@ -22,8 +23,7 @@ app.get("/", (req, res) => {
   res.send("Home page");
 });
 
-// app.use("/signup", signupRoute);
-
+app.use("/product", productRoutes);
 mongoose
   .connect(process.env.MONGODB_URI ?? "")
   .then(() => {
