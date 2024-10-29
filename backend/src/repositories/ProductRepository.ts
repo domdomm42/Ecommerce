@@ -9,9 +9,9 @@ class ProductRepository {
     this.model = ProductSchema;
   }
 
-  async findAll(): Promise<IProduct[]> {
+  findAll = async () => {
     return this.model.find();
-  }
+  };
 
   async findById(id: string): Promise<IProduct | null> {
     return this.model.findById(id);

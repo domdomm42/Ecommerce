@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import IProduct from "../interfaces/IProduct";
 
-const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema<IProduct>(
   {
     name: {
       type: String,

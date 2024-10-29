@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import helmet from "helmet";
-import Product from "./models/Product";
-import User from "./models/User";
-import Cart from "./models/Cart";
-import signupRoute from "./routes/cartRoutes";
+// import Product from "./models/Product";
+// import User from "./models/User";
+// import Cart from "./models/Cart";
+// import signupRoute from "./routes/signupRoute";
 
 // import issuesRoute from "./routes/issuesRoute.js";
 
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
   res.send("Home page");
 });
 
-app.use("/signup", signupRoute);
+// app.use("/signup", signupRoute);
 
 mongoose
   .connect(process.env.MONGODB_URI ?? "")
